@@ -2,5 +2,5 @@ import Image from "next/image";
 import styles from "./page.module.css";
 
 export default function Home() {
-  return <main className={styles.main}>lk ma 3ash wla kan </main>;
+  return <div className={styles.main}>lk ma 3ash wla kan </div>;
 }
