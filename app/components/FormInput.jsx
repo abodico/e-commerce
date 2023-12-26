@@ -4,9 +4,13 @@ const FormInput = ({input, formItemProps}) => {
   return (
     <Form.Item {...formItemProps}> {
       input.type === "text" ? (
-        <Input {...input}/>
+        <Input
+          {...input}
+        />
       ): input.type === "textarea" ? (
-        <Input.TextArea {...input} />
+        <Input.TextArea
+          {...input}
+        />
       ): input.type === "select" ? (
         <Select
           {...input}

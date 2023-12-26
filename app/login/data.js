@@ -9,7 +9,8 @@ export const loginData = [
       ]
     },
     input: {
-      type: "text"
+      type: "text",
+      className: "bg-white hover:border-lightgray focus:border-lightgray h-10",
     },
   },
   {
@@ -22,7 +23,8 @@ export const loginData = [
       ]
     },
     input: {
-      type: "text"
+      type: "text",
+      className: "bg-white hover:border-lightgray focus:border-lightgray h-10",
     },
   },
 ];
