@@ -1,3 +1,4 @@
+const inputClassName = "bg-white hover:border-lightgray focus:border-lightgray h-10";
 export const loginData = [
   {
     formItemProps: {
@@ -5,12 +6,13 @@ export const loginData = [
       label: "Email Address",
       rules: [
         {required: true, message: "Please enter your email address"},
+        {type: 'email', message: "Please enter a valid email"},
         {whitespace: true, message: "Email address can't be empty"},
       ]
     },
     input: {
       type: "text",
-      className: "bg-white hover:border-lightgray focus:border-lightgray h-10",
+      className: inputClassName,
     },
   },
   {
@@ -23,15 +25,15 @@ export const loginData = [
       ]
     },
     input: {
-      type: "text",
-      className: "bg-white hover:border-lightgray focus:border-lightgray h-10",
+      type: "password",
+      className: inputClassName,
     },
   },
 ];
 
 export const loginTail = [
   {
-    linkUrl: "/",
+    linkUrl: "/register",
     linkText: "Create an account?"
   },
   {

@@ -5,7 +5,8 @@ import { loginData, loginTail } from "./data"
 
 const page = () => {
   return (
-    <Login image="/assets/images/image-1.svg"
+    <Login image="/assets/images/image-5.jpg"
+      paddingY="94"
       title="Welcome!"
       text="Please login here"
       btnText="Login"

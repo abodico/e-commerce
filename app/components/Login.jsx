@@ -1,19 +1,21 @@
 //This component is used for login/register or any other form signing page
-import { Button, ConfigProvider, Form } from "antd"
-import Image from "next/image"
+import { Button, ConfigProvider, Form, Input } from "antd"
 import Link from "next/link"
 import FormInput from "./FormInput"
 
 const Login = (props) => {
   return (
-    <div className="flex h-screen w-screen">
-      <div >
-        <Image alt="img" src={props.image} width={1000} height={1000} style={{
-          width: "100%",
-          height: "100%",
-        }}/>
+    <div className="flex h-full w-full">
+      <div style={{
+        backgroundImage: `url(${props.image})`,
+        width: '50%',
+        height: 'auto',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        backgroundPosition: '50%'
+      }}>
       </div>
-      <div className="py-32 px-24 w-1/2">
+      <div className={`py-[${props.paddingY}px] px-20 w-1/2 h-full`}>
         <div className="py-8 ">
           <h1 className="text-3xl text-maingold font-semibold">{props.title}</h1>
           <p className="text-base text-lightgray font-light">{props.text}</p>
@@ -27,15 +29,17 @@ const Login = (props) => {
               },
             },
           }}>
-          <Form layout="vertical" form={props.form} onFinish={props.onFinish}>
+          <Form layout="vertical" onFinish={props.onFinish}>
             {props.data.map((item, ind) => {
               return (
                 <FormInput key={ind} input={item.input} formItemProps={item.formItemProps}/>
               )
             })}
-            <Button className="w-full h-12 bg-maingold text-white border-none" htmlType="submit">
-              {props.btnText}
-            </Button>
+            <Form.Item name="btn">
+              <Button className="w-full h-12 bg-maingold text-white border-none" htmlType="submit">
+                {props.btnText}
+              </Button>
+            </Form.Item>
           </Form>
         </ConfigProvider>
         {/* FORM TAIL */}
