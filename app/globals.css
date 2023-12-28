@@ -8,6 +8,7 @@
   margin: 0;
 }
 
+<<<<<<< HEAD
 /* :root {
   --max-width: 1100px;
   --border-radius: 12px;
@@ -25,6 +26,17 @@ body {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+=======
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 21, 22, 24;
+  }
+}
+
+body {
+>>>>>>> dc7ccbd70c89c9b22eada38864a596ef7698f874
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -32,11 +44,6 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
 }
 
 @media (prefers-color-scheme: dark) {

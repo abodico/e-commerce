@@ -1,41 +1,54 @@
 //This component is used for login/register or any other form signing page
-import { Button, Form } from "antd"
-import Image from "next/image"
+import { Button, ConfigProvider, Form, Input } from "antd"
 import Link from "next/link"
 import FormInput from "./FormInput"
 
 const Login = (props) => {
   return (
-    <div className="flex h-screen w-screen">
-      <div>
-        <Image alt="img" src={props.image} width={1000} height={1000} style={{
-          width: "auto",
-          height: "100%"
-        }}/>
+    <div className="flex h-full w-full">
+      <div style={{
+        backgroundImage: `url(${props.image})`,
+        width: '50%',
+        height: 'auto',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        backgroundPosition: '50%'
+      }}>
       </div>
-      <div className="py-32 px-12">
-        <div className="p-12">
-          <h1>{props.title}</h1>
-          <p>{props.text}</p>
+      <div className={`py-[${props.paddingY}px] px-20 w-1/2 h-full`}>
+        <div className="py-8 ">
+          <h1 className="text-3xl text-maingold font-semibold">{props.title}</h1>
+          <p className="text-base text-lightgray font-light">{props.text}</p>
         </div>
-
-        <Form layout="vertical" form={props.form} onFinish={props.onFinish}>
-          {props.data.map((item, ind) => {
-            return (
-              <FormInput key={ind} input={item.input} formItemProps={item.formItemProps}/>
-            )
-          })}
-          <Button className="w-full" htmlType="submit">
-            {props.btnText}
-          </Button>
-        </Form>
+        <ConfigProvider 
+          theme={{
+            components: {
+              Form: {
+                labelColor: '#f5cd47',
+                labelRequiredMarkColor: 'lightgray'
+              },
+            },
+          }}>
+          <Form layout="vertical" onFinish={props.onFinish}>
+            {props.data.map((item, ind) => {
+              return (
+                <FormInput key={ind} input={item.input} formItemProps={item.formItemProps}/>
+              )
+            })}
+            <Form.Item name="btn">
+              <Button className="w-full h-12 bg-maingold text-white border-none" htmlType="submit">
+                {props.btnText}
+              </Button>
+            </Form.Item>
+          </Form>
+        </ConfigProvider>
         {/* FORM TAIL */}
-        <div className="flex justify-between items-center">
-          {props.tail.map((item, ind) => {
-            <Link key={ind} href={item.linkUrl}>
+        <div className="flex justify-between items-center mt-4">
+          {props.tail.map((item, ind) => (
+            <Link key={ind} href={item.linkUrl} className="text-sm text-lightgray hover:text-white">
               {item.linkText}
             </Link>
-          })}
+          ))}
         </div>
       </div>
     </div>
