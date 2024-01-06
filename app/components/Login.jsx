@@ -4,6 +4,10 @@ import Link from "next/link"
 import FormInput from "./FormInput"
 
 const Login = (props) => {
+  const paddingProp = {
+    "94": "py-[96px]",
+    "20": "py-[20px]"
+  }
   return (
     <div className="flex h-full w-full">
       <div style={{
@@ -15,7 +19,7 @@ const Login = (props) => {
         backgroundPosition: '50%'
       }}>
       </div>
-      <div className={`py-[${props.paddingY}px] px-20 w-1/2 h-full`}>
+      <div className={`${paddingProp[props.paddingY]} px-20 w-1/2 h-full`}>
         <div className="py-8 ">
           <h1 className="text-3xl text-maingold font-semibold">{props.title}</h1>
           <p className="text-base text-lightgray font-light">{props.text}</p>
