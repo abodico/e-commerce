@@ -1,12 +1,16 @@
 'use client'
-import { Pagination } from 'antd';
+import { ConfigProvider, Pagination } from 'antd';
 import React, { useEffect, useState } from 'react'
 import Cards from '../components/Cards';
+import ProductsFilterSideBar from '../components/ProductsFilterSideBar';
 import { getProducts } from './fetchData';
+import { categoriesMap } from './filteringData';
 
 const Page = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [mask, setMask] = useState(0);
 
   const changePage = (page) => {
     setCurrentPage(page);
@@ -14,17 +18,42 @@ const Page = () => {
 
   useEffect(() => {
     getProducts(`https://dummyjson.com/products?limit=9&skip=${(currentPage-1) * 9}`, setProducts);
-  }, [currentPage])
-  return (
-    <div>
-      <div>
+  }, [currentPage]);
+  useEffect(() => {
+    const tmp = products.filter((product) => {
+      return mask === 0 || (mask & Math.pow(2, categoriesMap[product.category]));
+    })
+    setFilteredProducts(tmp);
+  }, [mask, products]);
 
+  return (
+    <div className='flex'>
+      <div>
+        <ProductsFilterSideBar setMask={setMask}/>
       </div>
 
       <div className="p-4">
-        <Cards products={products} />
+        <Cards products={filteredProducts} />
+        <ConfigProvider
+          theme={{
+            token: {
+              colorPrimaryBorder: '#000',
+              colorPrimary: '#f5cd47',
+              colorText: '#fff',
+              colorBgTextHover: 'rgba(100, 100, 100, 0.09)'
+            },
+            components: {
+              Pagination: {
+                itemActiveBg: '#000',
+                itemBg: 'lightgray',
+                itemLinkBg: 'lightgray',
+              },
+            },
+          }}
+        >
+        <Pagination current={currentPage} pageSize={9} total={100} showSizeChanger={false} onChange={changePage} />
+      </ConfigProvider>
       </div>
-      <Pagination current={currentPage} pageSize={9} total={90} onChange={changePage} />
     </div>
   )
 }
