@@ -1,7 +1,9 @@
 import { Checkbox, ConfigProvider, Radio } from "antd"
-import { checkboxes, radios } from "../products/filteringData"
+import { useEffect, useState } from "react";
+import { categoriesMap, checkboxes, radios, sortingFunctions } from "../products/filteringData"
 
-const ProductsFilterSideBar = ({setMask}) => {
+const ProductsFilterSideBar = ({mask, setMask, products, filteredProducts, setFilteredProducts}) => {
+  const [sortingValue, setSortingValue] = useState(4);
   const boxChange = (val) => {
     let tmp = 0;
     val.forEach((bit) => {
@@ -9,9 +11,20 @@ const ProductsFilterSideBar = ({setMask}) => {
     });
     setMask(tmp);
   }
-  const radioChange = (val) => {
-    
+  const radioChange = (e) => {
+    setSortingValue(e.target.value);
   }
+
+  //FILTERING AND SORTING
+  useEffect(() => {
+    let tmp = products;
+    tmp.sort(sortingFunctions[sortingValue]);
+    tmp = tmp.filter((product) => {
+      return mask === 0 || (mask & Math.pow(2, categoriesMap[product.category]));
+    })
+    setFilteredProducts([...tmp]);
+  }, [products, mask, sortingValue]);
+  
   return (
     <div className="py-16 pl-8 w-80 h-full">
       <ConfigProvider theme={{

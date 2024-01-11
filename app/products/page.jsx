@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react'
 import Cards from '../components/Cards';
 import ProductsFilterSideBar from '../components/ProductsFilterSideBar';
 import { getProducts } from './fetchData';
-import { categoriesMap } from './filteringData';
 
 const Page = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -19,17 +18,12 @@ const Page = () => {
   useEffect(() => {
     getProducts(`https://dummyjson.com/products?limit=9&skip=${(currentPage-1) * 9}`, setProducts);
   }, [currentPage]);
-  useEffect(() => {
-    const tmp = products.filter((product) => {
-      return mask === 0 || (mask & Math.pow(2, categoriesMap[product.category]));
-    })
-    setFilteredProducts(tmp);
-  }, [mask, products]);
 
   return (
     <div className='flex'>
       <div>
-        <ProductsFilterSideBar setMask={setMask}/>
+        <ProductsFilterSideBar mask={mask} setMask={setMask} filteredProducts={filteredProducts} 
+          products={products} setFilteredProducts={setFilteredProducts} />
       </div>
 
       <div className="p-4">

@@ -113,6 +113,19 @@ export const radios = {
   ]
 }
 
+export const sortingFunctions = {
+  //LOWEST PRICE
+  0: (a, b) => a.price - b.price,
+  //HIGHEST PRICE
+  1: (a, b) => b.price - a.price,
+  //MOST IN STOCK
+  2: (a, b) => b.stock - a.stock,
+  //HIGHEST RATE
+  3: (a, b) => b.rating - a.rating,
+  //DEFAULT / RECOMMENDED
+  4: (a, b) => a.id - b.id,
+}
+
 export const categories = [
   "smartphones",
   "laptops",
