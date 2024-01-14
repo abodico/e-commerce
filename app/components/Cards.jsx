@@ -3,7 +3,7 @@ import CardItem from './CardItem'
 const Cards = (props) => {
   if(props.products)
     return (
-      <div className='p-4 grid grid-cols-3 gap-2'>
+      <div className='p-4 grid grid-cols-3 gap-6'>
       {
         props.products.map((item, ind) => (
           <CardItem key={ind} {...item} />
