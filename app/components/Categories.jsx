@@ -6,6 +6,7 @@ import laptops from "../../public/adminUi/categories/laptops-category.png";
 import phones from "../../public/adminUi/categories/phones-category.png";
 import tv from "../../public/adminUi/categories/tv-home-category.png";
 import Link from "next/link";
+import Image from "next/image";
 const Categories = () => {
   const data = [
     {
@@ -34,14 +35,32 @@ const Categories = () => {
     },
   ];
   return (
-    <div className="mt-24">
-      <div className="flex justify-between items-center lg:px-24 md:px-8 px-4 ">
-        <h3 className="text-dark text-3xl font-semibold ">
+    <div className="mt-24 mx-auto container xl:px-24 md:px-8 px-4 h-100vh relative">
+      {/* header */}
+      <div className="flex justify-between items-center ">
+        <h3 className="text-dark md:text-3xl text-2xl font-semibold ">
           Shop by Categories
         </h3>
-        <Link href="/products" className="text-dark">
+        <Link href="/products" className="text-dark md:text-base text-sm">
           Show All
         </Link>
+      </div>
+      {/* cards */}
+      <div className="flex gap-4 flex-wrap w-full mt-8 ">
+        {data.map((item, index) => (
+          <div
+            key={index}
+            className="p-4 bg-[#f2f2f2] text-center overflow-hidden h-[50vh] md:w-[calc((100%-2rem)/3)] sm:w-[calc((100%-1rem)/2)] w-full rounded-lg relative"
+          >
+            <div
+              style={{ backgroundImage: `url(${item.image.src})` }}
+              className="w-full h-full bg-cover bg-center"
+            ></div>
+            <h5 className="w-[calc(100%-2rem)] box-border bg-white rounded-lg py-4 absolute bottom-4 left-4 ">
+              {item.title}
+            </h5>
+          </div>
+        ))}
       </div>
     </div>
   );
