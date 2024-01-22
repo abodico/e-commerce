@@ -7,7 +7,7 @@ const CardItem = (props) => {
     currency: 'USD',
   });
   return (
-    <Link href={`/products/product/${props.id}`}>
+    <Link href={`/products/${props.id}`}>
       <div className='w-max h-max'>
         <div className='flex justify-center items-center h-[250px] w-[250px] bg-gradient-to-r from-[#2e3038] to-[rgb(10,10,10)] rounded-lg'>
           <div className='h-[200px] w-[200px] relative'>
