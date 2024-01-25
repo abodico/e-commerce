@@ -14,7 +14,7 @@ const Hero = () => {
         },
       }}
     >
-      <div className="max-h-[900px] min-h-60 relative flex items-center w-full blue-back overflow-hidden">
+      <div className="max-h-[900px] mx-auto  min-h-60 relative flex items-center w-full blue-back overflow-hidden">
         <Image
           className="h-auto max-w-full relative md:left-20 left-16"
           src={hero1}

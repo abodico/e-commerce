@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 * {
   box-sizing: border-box;
   padding: 0;
@@ -21,7 +20,6 @@
   }
 }
 
-
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -36,4 +34,9 @@ body {
   html {
     color-scheme: dark;
   }
+}
+
+.slick-next:before,
+.slick-prev:before {
+  color: #b4b4b4 !important;
 }

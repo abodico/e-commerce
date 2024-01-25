@@ -12,13 +12,15 @@ module.exports = {
       "2xl": "1536px",
     },
     extend: {
-      backgroundImage: {},
+      backgroundImage: {
+        // "ipad-image": "url('/public/adminUi/products/airpods-max.png')",
+      },
     },
     colors: {
       dark: "#131118",
-      maingold: '#f5cd47',
-      lightgray: '#cbd5e1',
-      white: '#fff',
+      maingold: "#f5cd47",
+      lightgray: "#cbd5e1",
+      white: "#fff",
     },
   },
   plugins: [],
