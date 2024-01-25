@@ -1,10 +1,14 @@
 'use client'
+import Cards from '@/app/components/Cards';
 import { Button, ConfigProvider, InputNumber, Rate } from 'antd';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react'
 import { getProducts } from '../fetchData';
+import { sortingFunctions } from '../filteringData';
 const Page = ({params}) => {
   const [product, setProduct] = useState({});
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const USDollar = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -13,6 +17,21 @@ const Page = ({params}) => {
   useEffect(() => {
     getProducts(`https://dummyjson.com/products/${params.productId}`, setProduct, 1);
   }, [params])
+
+  if(product) {
+    useEffect(() => {
+      getProducts(`https://dummyjson.com/products/category/${product.category}`, setProducts, 0);
+    }, [product])
+
+    useEffect(() => {
+      let tmp = products.filter((item) => {
+        // console.log(item);
+        return item.id !== product.id;
+      }).sort(sortingFunctions[3]);
+      tmp.length = 3;
+      setFilteredProducts([...tmp]);
+    }, [products])
+  }
 
   const handleImageChange = (ind) => {
     const x = product.images[0];
@@ -26,7 +45,7 @@ const Page = ({params}) => {
 
   if(product)
     return (
-      <div className='p-12 pl-28'>
+      <div className='p-12 pl-24'>
         <div className='flex'>
           <div className='pt-24'>
             <div className='relative w-[400px] h-[400px]'><Image src={product.images && product.images[0]} alt='img' fill sizes='400px, 400px'/></div>
@@ -90,7 +109,9 @@ const Page = ({params}) => {
             </ConfigProvider>
           </div>
         </div>
-        RELATED ITEMS
+        <h1 className='px-4 text-[26px] font-bold'>Related Items</h1>
+        <div className='h-0.5 w-20 ml-4 bg-maingold'></div>
+        <Cards products={filteredProducts} gap={6} width={200} height={200} pageWidth={800}/>
       </div>
     )
 }

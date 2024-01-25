@@ -27,7 +27,7 @@ const Page = () => {
       </div>
 
       <div className="p-4">
-        <Cards products={filteredProducts} />
+        <Cards products={filteredProducts} gap={6} width={250} height={250} />
         <ConfigProvider
           theme={{
             token: {
